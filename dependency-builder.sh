@@ -9,7 +9,14 @@ else
     exit 1
 fi
 
-git clone https://github.com/AnzoDK/RPEngine.git
+if [ "$1" == "--use-dev" ]
+then
+    echo "Using dev branch"
+    git clone --single-branch --branch dev https://github.com/AnzoDK/RPEngine.git
+else
+    echo "Using master branch"
+    git clone https://github.com/AnzoDK/RPEngine.git
+fi
 if [ $? -ne 0 ]
 then
     echo "Git failed to get RPEngine - Fatal"
