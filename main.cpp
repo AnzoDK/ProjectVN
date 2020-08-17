@@ -6,12 +6,8 @@ int main(int argc, char **argv)
     std::cout << "Hello, world!" << std::endl;
     RosenoernEngine* re = new RosenoernEngine(1,10);
     RosenoernAudio& ra = re->GetAudioController();
-    re->init();
-    re->CreateMainWindow("ProjectVN",0);
-    Scene* s = new Scene();
-    MainMenu* mm = new MainMenu();
-    s->AddObject(mm);
-    re->SetScene(s);
+    Game* game = new Game();
+    game->init(re);
     while(re->isRunning)
     {
       re->Update();
