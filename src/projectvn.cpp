@@ -1,6 +1,9 @@
 #include "../includes/projectvn.h"
 using namespace rp;
-
+void Exit()
+{
+    std::cout << "Exiting.." << std::endl;
+}
 
 Game::Game()
 {
@@ -12,6 +15,7 @@ void Game::init(RosenoernEngine* re)
   re->init();
   re->CreateMainWindow("ProjectVN",0);
   MainMenu* mm = new MainMenu();
+  mm->SetName("MainMenu");
   Scene* s = new Scene();
   s->AddObject(mm);
   re->SetScene(s);
@@ -27,11 +31,13 @@ MainMenu::MainMenu()
 
 void MainMenu::Init()
 {
-    UIElements = std::vector<UIBase*>();
+    UIElements = std::vector<Base*>();
     Background* back = new Background("Resources/textures/btnDefault.png");
+    back->SetName("Background01");
     Button* startGameBtn = new Button();
     Button* exitGameBtn = new Button();
-    exitGameBtn->SetZ(1);
+    void (*funPtr)(){&Exit};
+    exitGameBtn->SetFunction(funPtr);
     startGameBtn->SetName("startGameBtn");
     startGameBtn->SetFont("Resources/fonts/Requiem.ttf");
     startGameBtn->GetUIText()->SetTextColor(CommonColor::Black);
@@ -56,8 +62,11 @@ void MainMenu::Init()
 }
 void MainMenu::Draw()
 {
+    std::sort(UIElements.begin(),UIElements.end());
     for(int i = 0; i < UIElements.size();i++)
     {
+        //std::cout << "Name: " << UIElements.at(i)->GetName() << std::endl;
+        UIElements.at(i)->Update();
         UIElements.at(i)->Draw();
     }
 }

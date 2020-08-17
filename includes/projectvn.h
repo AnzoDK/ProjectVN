@@ -18,6 +18,6 @@ class MainMenu : public UIMenu
         void Init() override;
         void Draw() override;
     private:
-        std::vector<UIBase*> UIElements;
+        std::vector<Base*> UIElements;
 };
 
