@@ -1,6 +1,25 @@
 #include "../includes/projectvn.h"
 using namespace rp;
 
+
+Game::Game()
+{
+    
+}
+
+void Game::init(RosenoernEngine* re)
+{
+  re->init();
+  re->CreateMainWindow("ProjectVN",0);
+  MainMenu* mm = new MainMenu();
+  Scene* s = new Scene();
+  s->AddObject(mm);
+  re->SetScene(s);
+  
+  
+}
+
+
 MainMenu::MainMenu()
 {
     Init();
@@ -9,8 +28,10 @@ MainMenu::MainMenu()
 void MainMenu::Init()
 {
     UIElements = std::vector<UIBase*>();
+    Background* back = new Background("Resources/textures/btnDefault.png");
     Button* startGameBtn = new Button();
     Button* exitGameBtn = new Button();
+    exitGameBtn->SetZ(1);
     startGameBtn->SetName("startGameBtn");
     startGameBtn->SetFont("Resources/fonts/Requiem.ttf");
     startGameBtn->GetUIText()->SetTextColor(CommonColor::Black);
@@ -31,6 +52,7 @@ void MainMenu::Init()
     exitGameBtn->GetRect()->x = 2*(RosenoernEngine::width/5);
     UIElements.push_back(startGameBtn);
     UIElements.push_back(exitGameBtn);
+    UIElements.push_back(back);
 }
 void MainMenu::Draw()
 {
