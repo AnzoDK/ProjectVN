@@ -14,12 +14,12 @@ void MainMenu::Init()
     startGameBtn->SetName("startGameBtn");
     startGameBtn->SetFont("Resources/fonts/Requiem.ttf");
     startGameBtn->GetUIText()->SetTextColor(CommonColor::Black);
-    startGameBtn->GetUIText()->SetFontSize(30);
+    startGameBtn->GetUIText()->SetFontSize(100);
     startGameBtn->SetUIText("Start Game");
     exitGameBtn->SetName("exitGameBtn");
     exitGameBtn->SetFont("Resources/fonts/Requiem.ttf");
     exitGameBtn->GetUIText()->SetTextColor(CommonColor::Black);
-    exitGameBtn->GetUIText()->SetFontSize(30);
+    exitGameBtn->GetUIText()->SetFontSize(100);
     exitGameBtn->SetUIText("Exit Game");
     startGameBtn->GetRect()->h = RosenoernEngine::height/10;
     startGameBtn->GetRect()->w = RosenoernEngine::width/5;
