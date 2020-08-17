@@ -1,0 +1,6 @@
+*.o
+*.kdev4
+projectvn
+*.so
+includes/RPAudio/*
+includes/RPEngine/*
