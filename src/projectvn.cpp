@@ -1,5 +1,7 @@
 #include "../includes/projectvn.h"
 using namespace rp;
+RosenoernEngine* Game::Engine = new RosenoernEngine(1,10);
+
 void Exit()
 {
     std::cout << "Exiting.." << std::endl;
@@ -10,15 +12,15 @@ Game::Game()
     
 }
 
-void Game::init(RosenoernEngine* re)
+void Game::init()
 {
-  re->init();
-  re->CreateMainWindow("ProjectVN",0);
+  Game::Engine->init();
+  Game::Engine->CreateMainWindow("ProjectVN",0);
   MainMenu* mm = new MainMenu();
   mm->SetName("MainMenu");
   Scene* s = new Scene();
   s->AddObject(mm);
-  re->SetScene(s);
+  Game::Engine->SetScene(s);
   
   
 }

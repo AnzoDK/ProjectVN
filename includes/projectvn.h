@@ -7,8 +7,11 @@ class Game
 {
     public:
         Game();
-        void init(RosenoernEngine* re);
+        ~Game(){delete(Game::Engine);};
+        void init();
+        static RosenoernEngine* Engine;
     private:
+        
 };
 
 class MainMenu : public UIMenu
