@@ -2,9 +2,10 @@
 using namespace rp;
 RosenoernEngine* Game::Engine = new RosenoernEngine(1,10);
 
-void Exit()
+void Game::Exit()
 {
     std::cout << "Exiting.." << std::endl;
+    Game::Engine->Quit();
 }
 
 Game::Game()
@@ -38,7 +39,7 @@ void MainMenu::Init()
     back->SetName("Background01");
     Button* startGameBtn = new Button();
     Button* exitGameBtn = new Button();
-    void (*funPtr)(){&Exit};
+    void (*funPtr)(){&Game::Exit};
     exitGameBtn->SetFunction(funPtr);
     startGameBtn->SetName("startGameBtn");
     startGameBtn->SetFont("Resources/fonts/Requiem.ttf");
@@ -62,13 +63,21 @@ void MainMenu::Init()
     UIElements.push_back(exitGameBtn);
     UIElements.push_back(back);
 }
+
+void MainMenu::Update()
+{
+  std::sort(UIElements.begin(),UIElements.end());
+  for(int i = 0; i < UIElements.size();i++)
+  {
+    UIElements.at(i)->Update();
+  }
+}
 void MainMenu::Draw()
 {
     std::sort(UIElements.begin(),UIElements.end());
     for(int i = 0; i < UIElements.size();i++)
     {
         //std::cout << "Name: " << UIElements.at(i)->GetName() << std::endl;
-        UIElements.at(i)->Update();
         UIElements.at(i)->Draw();
     }
 }
