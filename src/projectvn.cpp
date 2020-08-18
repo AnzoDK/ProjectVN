@@ -22,6 +22,7 @@ void Game::init()
   Scene* s = new Scene();
   s->AddObject(mm);
   Game::Engine->SetScene(s);
+  Game::Engine->SetFPS(5);
   
   
 }
