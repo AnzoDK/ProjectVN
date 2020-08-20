@@ -37,8 +37,10 @@ then
         make lib OS=Windows
 		cp includes/RPAudio/librpaudio.dll ../includes/RPAudio/
 		cp rpengine.dll ../includes/RPEngine/librpengine.dll
-		cp includes/RPAudio/librpaudio.a ../includes/RPAudio/
-		cp librpengine.a ../includes/RPEngine/librpengine.a
+		#cp includes/RPAudio/librpaudio.a ../includes/RPAudio/
+		#cp librpengine.a ../includes/RPEngine/librpengine.a
+        cp ../includes/RPEngine/librpengine.dll ../rpengine.dll
+        cp ../includes/RPAudio/librpaudio.dll ../RPAaudio.dll
 	else
 		./dependency-builder.sh --use-dev
         if [ $? -ne 0 ]
@@ -64,6 +66,8 @@ else
 		cp rpengine.dll ../includes/RPEngine/librpengine.dll
         cp includes/RPAudio/librpaudio.a ../includes/RPAudio/
 		cp librpengine.a ../includes/RPEngine/librpengine.a
+		cp ../includes/RPEngine/librpengine.dll ../rpengine.dll
+        cp ../includes/RPAudio/librpaudio.dll ../rpaudio.dll
 	else
 		./dependency-builder.sh
         if [ $? -ne 0 ]

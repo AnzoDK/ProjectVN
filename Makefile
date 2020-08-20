@@ -13,7 +13,8 @@ OS :=
 
 ifeq ($(OS), Windows)
 	CXX:= x86_64-w64-mingw32-g++
-	LINK += -lmingw32 -lSDL2main -lSDL2 -mwindows -lSDL2_image -lSDL2_ttf
+	CXX_FLAGS += 
+	LINK += -static-libgcc -static-libstdc++ -Wl,-Bstatic -lstdc++ -lpthread -Wl,-Bdynamic -lmingw32 -lSDL2main -lSDL2 -mwindows -lSDL2_image -lSDL2_ttf 
 endif
 
 dev-deps-windows: projectvn.o main.o

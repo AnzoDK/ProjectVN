@@ -5,3 +5,6 @@ projectvn
 includes/RPAudio/*
 includes/RPEngine/*
 *.exe
+rpengine.dll
+rpaudio.dll
+RPAaudio.dll
