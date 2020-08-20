@@ -29,16 +29,18 @@ then
 	if [ "$2" == "--Windows" ]
 	then
 		./dependency-builder.sh --use-dev --Windows
-		if [ $? -eq 0 ]
+		if [ $? -ne 0 ]
         then
+            rm -r -f RPEngine
             exit 1
         fi
 		cp includes/RPAudio/librpaudio.dll ../includes/RPAudio/
 		cp rpengine.so ../includes/RPEngine/librpengine.dll
 	else
 		./dependency-builder.sh --use-dev
-        if [ $? -eq 0 ]
+        if [ $? -ne 0 ]
         then
+            rm -r -f RPEngine
             exit 1
         fi
 		cp includes/RPAudio/librpaudio.so ../includes/RPAudio/
@@ -48,13 +50,14 @@ else
 	if [ "$1" == "--Windows" ]
 	then
 		./dependency-builder.sh --Windows
-        if [ $? -eq 0 ]
+        if [ $? -ne 0 ]
         then
+            rm -r -f RPEngine
             exit 1
         fi
 	else
 		./dependency-builder.sh
-        if [ $? -eq 0 ]
+        if [ $? -ne 0 ]
         then
             exit 1
         fi
