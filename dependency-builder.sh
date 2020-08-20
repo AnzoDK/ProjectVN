@@ -24,12 +24,32 @@ then
 fi
 
 cd RPEngine
-./dependency-builder.sh
+if [ "$1" == "--use-dev" ]
+then
+	if [ "$2" == "--Windows" ]
+	then
+		./dependency-builder.sh --use-dev --Windows
+		cp includes/RPAudio/librpaudio.dll ../includes/RPAudio/
+		cp rpengine.so ../includes/RPEngine/librpengine.dll
+	else
+		./dependency-builder.sh --use-dev
+		cp includes/RPAudio/librpaudio.so ../includes/RPAudio/
+		cp rpengine.so ../includes/RPEngine/librpengine.so
+	fi
+else
+	if [ "$1" == "--Windows" ]
+	then
+		./dependency-builder.sh --Windows
+	else
+		./dependency-builder.sh
+		cp includes/RPAudio/librpaudio.so ../includes/RPAudio/
+		cp rpengine.so ../includes/RPEngine/librpengine.so
+	fi
+fi
+
 make lib
 mkdir -p ../includes/RPEngine
 mkdir -p ../includes/RPAudio
-cp includes/RPAudio/librpaudio.so ../includes/RPAudio/
-cp rpengine.so ../includes/RPEngine/librpengine.so
 cp includes/*.h ../includes/RPEngine/
 cp includes/RPAudio/*.h ../includes/RPAudio/
 cd ..
