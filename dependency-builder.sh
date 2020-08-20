@@ -34,8 +34,11 @@ then
             rm -r -f RPEngine
             exit 1
         fi
+        make lib OS=Windows
 		cp includes/RPAudio/librpaudio.dll ../includes/RPAudio/
-		cp rpengine.so ../includes/RPEngine/librpengine.dll
+		cp rpengine.dll ../includes/RPEngine/librpengine.dll
+		cp includes/RPAudio/librpaudio.a ../includes/RPAudio/
+		cp librpengine.a ../includes/RPEngine/librpengine.a
 	else
 		./dependency-builder.sh --use-dev
         if [ $? -ne 0 ]
@@ -43,6 +46,7 @@ then
             rm -r -f RPEngine
             exit 1
         fi
+        make lib OS=Windows
 		cp includes/RPAudio/librpaudio.so ../includes/RPAudio/
 		cp rpengine.so ../includes/RPEngine/librpengine.so
 	fi
@@ -55,20 +59,34 @@ else
             rm -r -f RPEngine
             exit 1
         fi
+        make lib OS=Windows
+        cp includes/RPAudio/librpaudio.dll ../includes/RPAudio/
+		cp rpengine.dll ../includes/RPEngine/librpengine.dll
+        cp includes/RPAudio/librpaudio.a ../includes/RPAudio/
+		cp librpengine.a ../includes/RPEngine/librpengine.a
 	else
 		./dependency-builder.sh
         if [ $? -ne 0 ]
         then
+            rm -r -f RPEngine
             exit 1
         fi
+        make lib OS=Windows
 		cp includes/RPAudio/librpaudio.so ../includes/RPAudio/
 		cp rpengine.so ../includes/RPEngine/librpengine.so
+		
 	fi
 fi
-
-make lib
 mkdir -p ../includes/RPEngine
 mkdir -p ../includes/RPAudio
+mkdir -p ../includes/RPAudio/oggvorbis
+mkdir -p ../includes/RPAudio/vorbis
+mkdir -p ../includes/RPAudio/vorbisfile
+mkdir -p ../includes/RPAudio/libopenal
+cp -f includes/RPAudio/oggvorbis/* ../includes/RPAudio/oggvorbis/
+cp -f includes/RPAudio/vorbis/* ../includes/RPAudio/vorbis/
+cp -f includes/RPAudio/libopenal/* ../includes/RPAudio/libopenal/
+cp -f includes/RPAudio/vorbisfile/* ../includes/RPAudio/vorbisfile/
 cp includes/*.h ../includes/RPEngine/
 cp includes/RPAudio/*.h ../includes/RPAudio/
 cd ..

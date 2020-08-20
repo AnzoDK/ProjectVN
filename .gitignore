@@ -4,3 +4,4 @@ projectvn
 *.so
 includes/RPAudio/*
 includes/RPEngine/*
+*.exe
