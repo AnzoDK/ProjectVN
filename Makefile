@@ -21,6 +21,9 @@ dev-deps-windows: projectvn.o main.o
 	./dependency-builder.sh --use-dev --Windows
 	$(CXX) $(DEBUG_LEVEL) $(CXX_FLAGS) $(INCLUDES) $(SO_DIRS) $(OBJECTS) -o projectvn.exe $(LINK)
 	make clean
+no-dep-windows: projectvn.o main.o
+	$(CXX) $(DEBUG_LEVEL) $(CXX_FLAGS) $(INCLUDES) $(SO_DIRS) $(OBJECTS) -o projectvn.exe $(LINK)
+	make clean
 release: projectvn.o main.o
 	./dependency-builder.sh
 	$(CXX) $(DEBUG_LEVEL) $(CXX_FLAGS) $(INCLUDES) $(SO_DIRS) $(OBJECTS) -o projectvn $(LINK)
