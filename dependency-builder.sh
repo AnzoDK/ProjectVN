@@ -1,4 +1,5 @@
 #!/bin/bash
+#ProjectVN dependency resolver
 git --version &> /dev/null
 if [ $? -eq 0 ]
 then
@@ -36,6 +37,7 @@ then
         fi
 		cp includes/RPAudio/librpaudio.dll ../includes/RPAudio/
 		cp rpengine.so ../includes/RPEngine/librpengine.dll
+		mv -f includes/RPAudio/librpaudio.a ../includes/RPAudio/librpaudio.a
 	else
 		./dependency-builder.sh --use-dev
         if [ $? -ne 0 ]
@@ -63,6 +65,7 @@ else
         fi
 		cp includes/RPAudio/librpaudio.so ../includes/RPAudio/
 		cp rpengine.so ../includes/RPEngine/librpengine.so
+		mv -f includes/RPAudio/librpaudio.a ../includes/RPAudio/librpaudio.a
 	fi
 fi
 
