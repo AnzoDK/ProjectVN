@@ -51,7 +51,7 @@ then
             rm -r -f RPEngine
             exit 1
         fi
-        make lib OS=Windows
+        make lib OS=Linux
 		cp includes/RPAudio/librpaudio.so ../includes/RPAudio/
 		cp rpengine.so ../includes/RPEngine/librpengine.so
 	fi
@@ -78,7 +78,7 @@ else
             rm -r -f RPEngine
             exit 1
         fi
-        make lib OS=Windows
+        make lib OS=Linux
 		cp includes/RPAudio/librpaudio.so ../includes/RPAudio/
 		cp rpengine.so ../includes/RPEngine/librpengine.so
 		mv -f includes/RPAudio/librpaudio.a ../includes/RPAudio/librpaudio.a
