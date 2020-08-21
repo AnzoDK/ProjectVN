@@ -21,10 +21,7 @@ class MainMenu : public UIMenu
         MainMenu();
         ~MainMenu()
         {
-            for(int i = 0; i < UIElements.size();i++)  
-            {
-                delete(UIElements.at(i));
-            }
+            UIElements.clear();
           
         }
         void Init() override;
