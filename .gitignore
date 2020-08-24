@@ -9,3 +9,4 @@ rpengine.dll
 rpaudio.dll
 RPAaudio.dll
 vgcore.*
+.kdev4/*
