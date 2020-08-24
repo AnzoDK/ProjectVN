@@ -9,7 +9,7 @@ LIB_FLAGS := -fPIC
 CXX_FLAGS := -std=c++17 -Wall -pthread
 LINK := -lrpengine -lrpaudio
 SRC := ./src
-OS :=
+OS := Linux
 
 ifeq ($(OS), Windows)
 	CXX:= x86_64-w64-mingw32-g++
