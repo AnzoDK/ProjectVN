@@ -18,11 +18,14 @@ void Game::init()
   Game::Engine->init();
   Game::Engine->CreateMainWindow("ProjectVN",0);
   MainMenu* mm = new MainMenu();
+  OptionsMenu* om = new OptionsMenu();
   mm->SetName("MainMenu");
+  om->SetName("OptionsMenu");
   Scene* s = new Scene();
   s->AddObject(mm);
+  s->AddObject(om);
   Game::Engine->SetScene(s);
-  Game::Engine->SetFPS(60);
+  Game::Engine->SetFPS(1);
   
   
 }
@@ -76,23 +79,27 @@ void MainMenu::Init()
     UIElements.push_back(back);
 }
 
-void MainMenu::Update()
+void MainMenu::ExportObjects(Scene& scene)
 {
   std::sort(UIElements.begin(),UIElements.end());
-  for(int i = 0; i < UIElements.size();i++)
+  for(unsigned int i = 0; i < UIElements.size();i++)
   {
-    UIElements.at(i)->Update();
+    scene.AddObject(UIElements.at(i));
   }
 }
-void MainMenu::Draw()
+void MainMenu::Parse(std::vector<Base*>& vec)
 {
-    std::sort(UIElements.begin(),UIElements.end());
-    for(int i = 0; i < UIElements.size();i++)
+    
+    if(IsEnabled())
     {
-        std::cout << "Object: " << UIElements.at(i)->GetName() << " Z index: " << UIElements.at(i)->GetZ() << std::endl;
-        //std::cout << "Name: " << UIElements.at(i)->GetName() << std::endl;
-        UIElements.at(i)->Draw();
+        
+        for(unsigned int i = 0; i < UIElements.size();i++)
+        {
+            vec.push_back(UIElements.at(i));
+        }
     }
+  
+  
 }
 OptionsButton::OptionsButton()
 {
@@ -147,5 +154,42 @@ ButtonImage* OptionsButton::GetImg()
 {
   return buttonImg;  
 }
+void OptionsButton::Parse(std::vector<Base*>& vec)
+{
+  if(IsEnabled())
+  {
+      vec.push_back(GetImg());
+  }
+}
 
 
+
+OptionsMenu::OptionsMenu()
+{
+    Init();
+}
+OptionsMenu::~OptionsMenu()
+{
+    for(unsigned int i = 0; i < UIElements.size();i++)
+    {
+      delete(UIElements.at(i));  
+    }
+}
+void OptionsMenu::Parse(std::vector<Base*>& vec)
+{
+    if(IsEnabled())
+    {
+      for(unsigned int i = 0; i < UIElements.size();i++)
+      {
+          vec.push_back(UIElements.at(i));
+      }
+    }
+}
+
+void OptionsMenu::Init()
+{
+    UIElements = std::vector<Base*>();
+    Background* bg = new Background("Resources/textures/btnDefault.png");
+    bg->SetEnabled(false);
+    UIElements.push_back(bg);
+}

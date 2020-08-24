@@ -25,8 +25,8 @@ class MainMenu : public UIMenu
           
         }
         void Init() override;
-        void Draw() override;
-        void Update() override;
+        void Parse(std::vector<Base*>& vec) override;
+        void ExportObjects(Scene& scene);
     private:
         std::vector<Base*> UIElements;
 };
@@ -43,9 +43,18 @@ class OptionsButton : public Button
         void SetImg(std::string path);
         void Init() override;
         void Draw() override;
-        
+        void Parse(std::vector<Base*>& vec) override;
     private:
         ButtonImage* buttonImg;
 };
-
+class OptionsMenu : public MainMenu
+{
+    public:
+        OptionsMenu();
+        void Init() override;
+        void Parse(std::vector<Base*>& vec) override;
+        ~OptionsMenu();
+    private:
+        std::vector<Base*> UIElements;
+};
 
