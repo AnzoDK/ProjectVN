@@ -25,7 +25,7 @@ void Game::init()
   s->AddObject(mm);
   s->AddObject(om);
   Game::Engine->SetScene(s);
-  Game::Engine->SetFPS(1);
+  Game::Engine->SetFPS(60);
   
   
 }
@@ -75,7 +75,6 @@ void MainMenu::Init()
     UIElements.push_back(startGameBtn);
     UIElements.push_back(exitGameBtn);
     UIElements.push_back(optionsBtn);
-    UIElements.push_back(optionsBtn->GetImg());
     UIElements.push_back(back);
 }
 
@@ -95,7 +94,8 @@ void MainMenu::Parse(std::vector<Base*>& vec)
         
         for(unsigned int i = 0; i < UIElements.size();i++)
         {
-            vec.push_back(UIElements.at(i));
+            //vec.push_back(UIElements.at(i));
+            UIElements.at(i)->Parse(vec);
         }
     }
   
@@ -159,6 +159,7 @@ void OptionsButton::Parse(std::vector<Base*>& vec)
   if(IsEnabled())
   {
       vec.push_back(GetImg());
+      vec.push_back(this);
   }
 }
 
@@ -181,7 +182,7 @@ void OptionsMenu::Parse(std::vector<Base*>& vec)
     {
       for(unsigned int i = 0; i < UIElements.size();i++)
       {
-          vec.push_back(UIElements.at(i));
+          UIElements.at(i)->Parse(vec);
       }
     }
 }
