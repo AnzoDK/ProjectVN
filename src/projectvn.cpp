@@ -131,7 +131,7 @@ void OptionsButton::Draw()
         rr->w = GetRect()->w*0.8;
         rr->x = GetRect()->x + (GetRect()->w/8);
         rr->y = GetRect()->y + (GetRect()->h/8);
-        buttonImg->SetRect(rr);
+        //buttonImg->SetRect(rr);
         /*std::cout << "Path for resource is: " + GetGraphic()->GetFile()->GetPath() << std::endl;*/
         SDL_Surface* tmpSurf = IMG_Load(GetGraphic()->GetFile()->GetPath().c_str());
         //SDL_Surface* tmpSurf = IMG_Load("testImg.png");
