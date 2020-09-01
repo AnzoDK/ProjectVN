@@ -4,8 +4,13 @@ RosenoernEngine* Game::Engine = new RosenoernEngine(1,10);
 
 void Game::Exit()
 {
-    std::cout << "Exiting.." << std::endl;
+    Game::Engine->Log("Exiting..");
     Game::Engine->Quit();
+}
+
+void Game::Start()
+{
+  Game::Engine->Log("Starting!");  
 }
 
 Game::Game()
@@ -44,13 +49,15 @@ void MainMenu::Init()
     Button* startGameBtn = new Button();
     Button* exitGameBtn = new Button();
     OptionsButton* optionsBtn = new OptionsButton();
-    void (*funPtr)(){&Game::Exit};
-    exitGameBtn->SetFunction(funPtr);
+    /*Don't do this unless you're forced to -->*/void (*funPtr)(){&Game::Exit};
+    /*I beg you not to do this*/exitGameBtn->SetFunction(funPtr);
     startGameBtn->SetName("startGameBtn");
     startGameBtn->SetFont("Resources/fonts/Requiem.ttf");
     startGameBtn->GetUIText()->SetTextColor(CommonColor::Black);
     startGameBtn->GetUIText()->SetFontSize(100);
     startGameBtn->SetUIText("Start Game");
+    /*There is so many things wrong with this... -->*/ void (*startPtr)(){&Game::Start};
+    /*Imagine if the void wasn't static... Then you would be in deep shit -->*/ startGameBtn->SetFunction(startPtr);
     exitGameBtn->SetName("exitGameBtn");
     exitGameBtn->SetFont("Resources/fonts/Requiem.ttf");
     exitGameBtn->GetUIText()->SetTextColor(CommonColor::Black);
@@ -171,10 +178,12 @@ OptionsMenu::OptionsMenu()
 }
 OptionsMenu::~OptionsMenu()
 {
-    for(unsigned int i = 0; i < UIElements.size();i++)
+   /*Dont do this --> for(unsigned int i = 0; i < UIElements.size();i++)
     {
       delete(UIElements.at(i));  
-    }
+    }*/
+   
+   /*Do this -->*/ UIElements.clear();
 }
 void OptionsMenu::Parse(std::vector<Base*>& vec)
 {

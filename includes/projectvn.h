@@ -11,6 +11,7 @@ class Game
         void init();
         static RosenoernEngine* Engine;
         static void Exit();
+        static void Start();
     private:
         
 };
