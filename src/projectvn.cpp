@@ -1,6 +1,17 @@
 #include "../includes/projectvn.h"
 using namespace rp;
 RosenoernEngine* Game::Engine = new RosenoernEngine(1,10);
+//Game
+void Game::SwitchScene(int SceneID)
+{
+    //This is just a lookup table for scenes
+    switch(SceneID)
+    {
+        default:
+            Game::Engine->SetScene(new DeathScene());
+        break;
+    }
+}
 
 void Game::Exit()
 {
@@ -10,7 +21,9 @@ void Game::Exit()
 
 void Game::Start()
 {
-  Game::Engine->Log("Starting!");  
+  Game::Engine->Log("Starting!");
+  Game::SwitchScene(0);
+  
 }
 
 Game::Game()
@@ -35,7 +48,7 @@ void Game::init()
   
 }
 
-
+//Menus
 MainMenu::MainMenu()
 {
     Init();
@@ -143,6 +156,8 @@ void OptionsButton::Draw()
         SDL_Surface* tmpSurf = IMG_Load(GetGraphic()->GetFile()->GetPath().c_str());
         //SDL_Surface* tmpSurf = IMG_Load("testImg.png");
         SDL_Texture* tex = SDL_CreateTextureFromSurface(RosenoernEngine::mainRender,tmpSurf);
+        SDL_SetTextureColorMod(tex,TexMod.modR,TexMod.modB,TexMod.modG);
+        SDL_SetTextureAlphaMod(tex,TexMod.modR);
         SDL_RenderCopy(RosenoernEngine::mainRender,tex, NULL,GetRect());
         SDL_FreeSurface(tmpSurf);
         SDL_DestroyTexture(tex);
@@ -203,3 +218,59 @@ void OptionsMenu::Init()
     bg->SetEnabled(false);
     UIElements.push_back(bg);
 }
+
+//Animations
+DeathAnimation::DeathAnimation()
+{
+  Init();  
+}
+void DeathAnimation::Init()
+{
+    a = 0;
+    r = 1;
+    obj = nullptr;
+}
+void DeathAnimation::Update()
+{
+    if(!IsDone() && GetStatus()==RunningState::Running)
+    {
+        if(Game::Engine->GetObject("Background01")!= nullptr && obj == nullptr)
+        {
+            Game::Engine->GetObject("Background01")->SetEnabled(false);
+            obj = Game::Engine->GetObject("Background01");
+        }
+        else
+        {
+            obj->TexMod.modR = r;
+            obj->TexMod.modR = a;
+            if(r > 255)
+            {
+                r++;
+            }
+            if(a > 255)
+            {
+            
+            }
+            if(r == 255 && a == 255)
+            {
+                SetDone(1);
+            }
+        
+        }
+    }
+}
+
+
+
+//Scenes
+void DeathScene::Init()
+{
+    UIText* deathTXT = new UIText("Resources/fonts/Requiem.ttf","Is This Your End? Or Will You Rise To Supress Your Destiny?", 125, Game::Engine->width/2,Game::Engine->height/2,Game::Engine->width,Game::Engine->height);
+    deathTXT->SetZ(1);
+    deathTXT->SetName("DeathText");
+    DeathAnimation* DA = new DeathAnimation();
+    AddObject(deathTXT);
+    AddObject(DA);
+    
+}
+

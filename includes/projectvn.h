@@ -12,6 +12,7 @@ class Game
         static RosenoernEngine* Engine;
         static void Exit();
         static void Start();
+        static void SwitchScene(int sceneID);
     private:
         
 };
@@ -57,5 +58,29 @@ class OptionsMenu : public MainMenu
         ~OptionsMenu();
     private:
         std::vector<Base*> UIElements;
+};
+
+class DeathAnimation : public SimpleAnimationBase
+{
+    public:
+        DeathAnimation();
+        ~DeathAnimation();
+        void Init() override;
+        void Update() override;
+    private:
+        Uint8 r;
+        Uint8 a;
+        Base* obj;
+        
+};
+
+class DeathScene : public Scene
+{
+    public:
+        DeathScene(){Init();}
+        void Init();
+        
+    private:
+        
 };
 
