@@ -7,6 +7,8 @@ int main(int argc, char **argv)
     Game* game = new Game();
     game->init();
     RosenoernAudio& ra = Game::Engine->GetAudioController();
+    /*ra.AddToQueue("Resources/sound/music/mp3.mp3");
+    ra.PlayFromQueue();*/
     while(Game::Engine->isRunning)
     {
       Game::Engine->Update();

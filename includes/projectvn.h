@@ -63,10 +63,10 @@ class OptionsMenu : public MainMenu
 class DeathAnimation : public SimpleAnimationBase
 {
     public:
-        DeathAnimation();
-        ~DeathAnimation();
-        void Init() override;
-        void Update() override;
+        DeathAnimation(){Init();}
+        virtual ~DeathAnimation(){}
+        virtual void Init() override;
+        virtual void Update() override;
     private:
         Uint8 r;
         Uint8 a;
@@ -79,7 +79,7 @@ class DeathScene : public Scene
     public:
         DeathScene(){Init();}
         void Init();
-        
+        ~DeathScene(){}
     private:
         
 };

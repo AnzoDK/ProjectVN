@@ -220,15 +220,16 @@ void OptionsMenu::Init()
 }
 
 //Animations
-DeathAnimation::DeathAnimation()
+/*DeathAnimation::DeathAnimation()
 {
   Init();  
-}
+}*/
 void DeathAnimation::Init()
 {
     a = 0;
-    r = 1;
+    r = 0;
     obj = nullptr;
+    SetStatus(RunningState::Running);
 }
 void DeathAnimation::Update()
 {
@@ -236,24 +237,26 @@ void DeathAnimation::Update()
     {
         if(Game::Engine->GetObject("Background01")!= nullptr && obj == nullptr)
         {
-            Game::Engine->GetObject("Background01")->SetEnabled(false);
             obj = Game::Engine->GetObject("Background01");
+            obj->TexMod.modB = 0;
+            obj->TexMod.modG = 0;
         }
         else
         {
             obj->TexMod.modR = r;
-            obj->TexMod.modR = a;
-            if(r > 255)
+            obj->TexMod.modA = a;
+            if(r < 255)
             {
                 r++;
             }
-            if(a > 255)
+            if(a < 255)
             {
-            
+                a++;
             }
             if(r == 255 && a == 255)
             {
                 SetDone(1);
+                SetStatus(RunningState::Stopped);
             }
         
         }
@@ -265,12 +268,17 @@ void DeathAnimation::Update()
 //Scenes
 void DeathScene::Init()
 {
-    UIText* deathTXT = new UIText("Resources/fonts/Requiem.ttf","Is This Your End? Or Will You Rise To Supress Your Destiny?", 125, Game::Engine->width/2,Game::Engine->height/2,Game::Engine->width,Game::Engine->height);
+    UIText* deathTXT = new UIText("Resources/fonts/Requiem.ttf","Is This Your End? Or Will You Rise To Supress Your Destiny?", 125, 0,Game::Engine->height/6*2,Game::Engine->width,Game::Engine->height/5);
     deathTXT->SetZ(1);
     deathTXT->SetName("DeathText");
     DeathAnimation* DA = new DeathAnimation();
+    Background* bg = new Background("Resources/textures/bg0.png");
+    bg->SetZ(-1);
+    bg->SetName("Background01");
+    DA->SetName("BGAnimation");
     AddObject(deathTXT);
     AddObject(DA);
+    AddObject(bg);
     
 }
 
