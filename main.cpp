@@ -9,10 +9,19 @@ int main(int argc, char **argv)
     RosenoernAudio& ra = Game::Engine->GetAudioController();
     /*ra.AddToQueue("Resources/sound/music/mp3.mp3");
     ra.PlayFromQueue();*/
-    while(Game::Engine->isRunning)
+    Ini ini = Ini("test.ini");
+    if(ini.GetKey("Video")->name != "Invalid")
+    {
+        if(ini.GetKey("Video")->GetSubKey("width") != "-2")
+        {
+            std::cout << atoi(ini.GetKey("Display")->GetSubKey("width").c_str());
+        }
+        
+    }
+    /*while(Game::Engine->isRunning)
     {
       Game::Engine->Update();
-    }
+    }*/
     
     delete(game);
     return 0;
