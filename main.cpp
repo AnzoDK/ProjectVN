@@ -10,18 +10,11 @@ int main(int argc, char **argv)
     /*ra.AddToQueue("Resources/sound/music/mp3.mp3");
     ra.PlayFromQueue();*/
     Ini ini = Ini("test.ini");
-    if(ini.GetKey("Video")->name != "Invalid")
-    {
-        if(ini.GetKey("Video")->GetSubKey("width") != "-2")
-        {
-            std::cout << atoi(ini.GetKey("Display")->GetSubKey("width").c_str()) << std::endl;
-        }
-        
-    }
-    while(Game::Engine->isRunning)
+    std::cout << atoi(ini.GetKey("Game Settings")->GetSubKey("playerHeight").c_str()) << std::endl;
+    /*while(Game::Engine->isRunning)
     {
       Game::Engine->Update();
-    }
+    }*/
     
     delete(game);
     return 0;
