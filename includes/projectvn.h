@@ -68,8 +68,8 @@ class DeathAnimation : public SimpleAnimationBase
         virtual void Init() override;
         virtual void Update() override;
     private:
-        Uint8 r;
-        Uint8 a;
+        float r;
+        float a;
         Base* obj;
         
 };

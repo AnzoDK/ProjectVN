@@ -247,11 +247,11 @@ void DeathAnimation::Update()
             obj->TexMod.modA = a;
             if(r < 255)
             {
-                r++;
+                r+= 0.5f;
             }
             if(a < 255)
             {
-                a++;
+                a+= 0.5f; //This should be converted to an int in a floor like way
             }
             if(r == 255 && a == 255)
             {
