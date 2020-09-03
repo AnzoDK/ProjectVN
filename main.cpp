@@ -11,10 +11,10 @@ int main(int argc, char **argv)
     ra.PlayFromQueue();*/
     Ini ini = Ini("test.ini");
     std::cout << atoi(ini.GetKey("Game Settings")->GetSubKey("playerHeight").c_str()) << std::endl;
-    /*while(Game::Engine->isRunning)
+    while(Game::Engine->isRunning)
     {
       Game::Engine->Update();
-    }*/
+    }
     
     delete(game);
     return 0;
