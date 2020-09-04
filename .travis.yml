@@ -17,7 +17,7 @@ before_install:
     - cd ..
     - sudo cp -r /usr/i686-w64-mingw32/include /usr/x86_64-w64-mingw32/include
     - ls /usr/x86_64-w64-mingw32/include
-    - sudo cp -r /usr/include /usr/x86_64-w64-mingw32/include
+    - sudo cp -r /usr/include/SDL /usr/x86_64-w64-mingw32/include/SDL
 addons:
   apt:
     packages:
