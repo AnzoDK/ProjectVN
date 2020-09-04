@@ -1,6 +1,6 @@
 #!/bin/bash
 pwd
-cd ..
+#cd ..
 ./dependency-builder.sh --use-dev
 make dev-deps
 ./projectvn --test
