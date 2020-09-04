@@ -1,13 +1,16 @@
 #include <iostream>
 #include "../includes/projectvn.h"
-int main(int argc, char **argv)
+int main(int argc, char *argv[])
 {
     bool test = 0;
     int tstCount = 0;
-    if(strcmp(argv[2],"--test"))
+    for(int i = 0; i < argc; i++)
     {
-        test = 1;
-        tstCount = 1000;
+        if(strcmp(argv[i],"--test"))
+        {
+            test = 1;
+            tstCount = 1000;
+        }
     }
     using namespace rp;
     std::cout << "Hello, world!" << std::endl;
@@ -23,11 +26,12 @@ int main(int argc, char **argv)
       if(test)
       {
           tstCount--;
+          std::cout << tstCount << std::endl;
       }
       Game::Engine->Update();
-      if(tstCount <= 0)
+      if(tstCount <= 0 && test)
       {
-          break;
+          Game::Engine->isRunning = false;
       }
     }
     

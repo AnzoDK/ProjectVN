@@ -29,7 +29,7 @@ Name=Laptop
 Type=Native Application
 
 [Launch][Launch Configuration 1][Data]
-Arguments=
+Arguments=--test
 Dependencies=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x00)
 Dependency Action=Nothing
 EnvironmentGroup=
