@@ -23,6 +23,8 @@ before_install:
     - ls /usr/include
     - sudo cp -r /usr/include/SDL2 /usr/x86_64-w64-mingw32/include/
     - sudo cp -r /usr/include/AL /usr/x86_64-w64-mingw32/include/
+    - sudo cp -r /usr/include/vorbis /usr/x86_64-w64-mingw32/include/
+
 addons:
   apt:
     packages:
@@ -52,6 +54,7 @@ addons:
       - libsdl2-image-dev
       - libsdl2-ttf-dev
       - libopenal-dev
+      - libvorbis-dev
 
 os:
     - linux
