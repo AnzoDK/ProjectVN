@@ -15,6 +15,7 @@ before_install:
     - cd SDL2_ttf-2.0.15
     - sudo make native
     - cd ..
+    - sudo cp -r /usr/i686-w64-mingw32/include /usr/x86_64-w64-mingw32/include
     
 addons:
   apt:
