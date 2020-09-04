@@ -1,5 +1,10 @@
 dist: focal
 language: c++
+before_install:
+    - sudo add-apt-repository ppa:tobydox/mingw-w64
+    - sudo apt update
+    - sudo apt install sdl2-mingw-w64
+    
 addons:
   apt:
     packages:
@@ -26,9 +31,8 @@ addons:
       - libopenal-dev
       - wine
       - libsdl2-dev
-      - libsd2-image-dev
+      - libsdl2-image-dev
       - libsdl2-ttf-dev
-      - sdl2-mingw-w64
 
 os:
     - linux
