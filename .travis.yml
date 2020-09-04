@@ -26,8 +26,8 @@ addons:
       - libopenal-dev
       - wine
       - libsdl2-dev
-      - libsd2_image-dev
-      - libsdl2_ttf-dev
+      - libsd2_image
+      - libsdl2_ttf
       - sdl2-mingw-w64
 
 os:
