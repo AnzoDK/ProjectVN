@@ -2,6 +2,7 @@ dist: focal
 language: c++
 before_install:
     - gpg --keyserver keyserver.ubuntu.com --recv 72931b477e22fefd47f8dece02fe5f12adde29b2
+    - gpg --keyserver keyserver.ubuntu.com --recv 02FE5F12ADDE29B2
     - sudo echo "deb http://ppa.launchpad.net/tobydox/mingw-w64/ubuntu bionic main" >> /etc/apt/sources.list
     - sudo apt update
     - sudo apt -y install sdl2-mingw-w64
