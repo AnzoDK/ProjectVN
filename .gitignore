@@ -4,3 +4,11 @@ projectvn
 *.so
 includes/RPAudio/*
 includes/RPEngine/*
+*.exe
+rpengine.dll
+rpaudio.dll
+RPAaudio.dll
+vgcore.*
+.kdev4/*
+GameLog.log
+.kdev4/ProjectVN.kdev4

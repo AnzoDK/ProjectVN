@@ -1,4 +1,5 @@
 #!/bin/bash
+#ProjectVN dependency resolver
 git --version &> /dev/null
 if [ $? -eq 0 ]
 then
@@ -24,12 +25,75 @@ then
 fi
 
 cd RPEngine
-./dependency-builder.sh
-make lib
+if [ "$1" == "--use-dev" ]
+then
+	if [ "$2" == "--Windows" ]
+	then
+		./dependency-builder.sh --use-dev --Windows
+		if [ $? -ne 0 ]
+        then
+            rm -r -f RPEngine
+            exit 1
+        fi
+        make lib OS=Windows
+		cp includes/RPAudio/librpaudio.dll ../includes/RPAudio/
+		cp rpengine.so ../includes/RPEngine/librpengine.dll
+		mv -f includes/RPAudio/librpaudio.a ../includes/RPAudio/librpaudio.a
+		cp rpengine.dll ../includes/RPEngine/librpengine.dll
+		cp includes/RPAudio/librpaudio.a ../includes/RPAudio/
+		cp librpengine.a ../includes/RPEngine/librpengine.a
+        cp ../includes/RPEngine/librpengine.dll ../rpengine.dll
+        cp ../includes/RPAudio/librpaudio.dll ../rpaudio.dll
+	else
+		./dependency-builder.sh --use-dev
+        if [ $? -ne 0 ]
+        then
+            rm -r -f RPEngine
+            exit 1
+        fi
+        make lib OS=Linux
+		cp includes/RPAudio/librpaudio.so ../includes/RPAudio/
+		cp rpengine.so ../includes/RPEngine/librpengine.so
+	fi
+else
+	if [ "$1" == "--Windows" ]
+	then
+		./dependency-builder.sh --Windows
+        if [ $? -ne 0 ]
+        then
+            rm -r -f RPEngine
+            exit 1
+        fi
+        make lib OS=Windows
+        cp includes/RPAudio/librpaudio.dll ../includes/RPAudio/
+		cp rpengine.dll ../includes/RPEngine/librpengine.dll
+        cp includes/RPAudio/librpaudio.a ../includes/RPAudio/
+		cp librpengine.a ../includes/RPEngine/librpengine.a
+		cp ../includes/RPEngine/librpengine.dll ../rpengine.dll
+        cp ../includes/RPAudio/librpaudio.dll ../rpaudio.dll
+	else
+		./dependency-builder.sh
+        if [ $? -ne 0 ]
+        then
+            rm -r -f RPEngine
+            exit 1
+        fi
+        make lib OS=Linux
+		cp includes/RPAudio/librpaudio.so ../includes/RPAudio/
+		cp rpengine.so ../includes/RPEngine/librpengine.so
+		mv -f includes/RPAudio/librpaudio.a ../includes/RPAudio/librpaudio.a
+	fi
+fi
 mkdir -p ../includes/RPEngine
 mkdir -p ../includes/RPAudio
-cp includes/RPAudio/librpaudio.so ../includes/RPAudio/
-cp rpengine.so ../includes/RPEngine/librpengine.so
+mkdir -p ../includes/RPAudio/oggvorbis
+mkdir -p ../includes/RPAudio/vorbis
+mkdir -p ../includes/RPAudio/vorbisfile
+mkdir -p ../includes/RPAudio/libopenal
+cp -f includes/RPAudio/oggvorbis/* ../includes/RPAudio/oggvorbis/
+cp -f includes/RPAudio/vorbis/* ../includes/RPAudio/vorbis/
+cp -f includes/RPAudio/libopenal/* ../includes/RPAudio/libopenal/
+cp -f includes/RPAudio/vorbisfile/* ../includes/RPAudio/vorbisfile/
 cp includes/*.h ../includes/RPEngine/
 cp includes/RPAudio/*.h ../includes/RPAudio/
 cd ..

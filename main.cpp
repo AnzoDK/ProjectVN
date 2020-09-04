@@ -7,6 +7,10 @@ int main(int argc, char **argv)
     Game* game = new Game();
     game->init();
     RosenoernAudio& ra = Game::Engine->GetAudioController();
+    /*ra.AddToQueue("Resources/sound/music/mp3.mp3");
+    ra.PlayFromQueue();*/
+    Ini ini = Ini("test.ini");
+    std::cout << atoi(ini.GetKey("Game Settings")->GetSubKey("playerHeight").c_str()) << std::endl;
     while(Game::Engine->isRunning)
     {
       Game::Engine->Update();
