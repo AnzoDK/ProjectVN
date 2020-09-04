@@ -28,6 +28,7 @@ addons:
       - libsdl2-dev
       - libsd2_image-dev
       - libsdl2_ttf-dev
+      - sdl2-mingw-w64
 
 os:
     - linux
