@@ -24,6 +24,7 @@ addons:
       - libsndio-dev
       - libvorbis-dev
       - libopenal-dev
+      - wine
 
 os:
     - linux
