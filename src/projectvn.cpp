@@ -273,7 +273,10 @@ void DeathScene::Init()
     deathTXT->SetName("DeathText");
     DeathAnimation* DA = new DeathAnimation();
     Background* bg = new Background("Resources/textures/bg0.png");
-    bg->TexMod.modA = 1;
+    bg->TexMod.modA = 0;
+    bg->TexMod.modB = 0;
+    bg->TexMod.modG = 0;
+    bg->TexMod.modR = 0;
     bg->SetZ(-1);
     bg->SetName("Background01");
     DA->SetName("BGAnimation");
