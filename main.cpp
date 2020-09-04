@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstring>
 #include "../includes/projectvn.h"
 int main(int argc, char *argv[])
 {
