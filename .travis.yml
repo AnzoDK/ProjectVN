@@ -8,12 +8,12 @@ before_install:
     - curl https://www.libsdl.org/projects/SDL_image/release/SDL2_image-devel-2.0.5-mingw.tar.gz --output sdlimg.tar.gz
     - tar xf sdlimg.tar.gz
     - cd SDL2_image-2.0.5
-    - make
+    - sudo make cross
     - cd ..
     - curl https://www.libsdl.org/projects/SDL_ttf/release/SDL2_ttf-devel-2.0.15-mingw.tar.gz --output sdl2ttf.tar.gz
     - tar xf sdl2ttf.tar.gz
     - cd SDL2_ttf-2.0.15
-    - make cross
+    - sudo make cross
     - cd ..
     
 addons:
