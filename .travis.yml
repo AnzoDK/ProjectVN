@@ -5,6 +5,11 @@ before_install:
     - sudo echo "deb http://ppa.launchpad.net/tobydox/mingw-w64/ubuntu bionic main" >> /etc/apt/sources.list
     - sudo apt update
     - sudo apt -y install sdl2-mingw-w64
+    - curl https://www.libsdl.org/projects/SDL_image/release/SDL2_image-devel-2.0.5-mingw.tar.gz --output sdlimg.tar.gz
+    - tar xf sdlimg.tar.gz
+    - cd SDL2_image-2.0.5
+    - make cross
+    - cd ..
     
 addons:
   apt:
