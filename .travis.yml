@@ -1,7 +1,7 @@
-dist: bionic
+dist: focal
 language: c++
 before_install:
-    - sudo add-apt-repository -y ppa:tobydox/mingw-w64
+    - sudo echo "deb http://ppa.launchpad.net/tobydox/mingw-w64/ubuntu bionic main" >> /etc/apt/sources.list
     - sudo apt update
     - sudo apt -y install sdl2-mingw-w64
     
