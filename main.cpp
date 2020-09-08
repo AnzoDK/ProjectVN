@@ -1,13 +1,13 @@
 #include <iostream>
 #include <cstring>
-#include "../includes/projectvn.h"
+#include "includes/projectvn.h"
 int main(int argc, char *argv[])
 {
     bool test = 0;
     int tstCount = 0;
     for(int i = 0; i < argc; i++)
     {
-        if(strcmp(argv[i],"--test"))
+        if(strcmp(argv[i],"--test") == 0)
         {
             test = 1;
             tstCount = 1000;
