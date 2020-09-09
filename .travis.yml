@@ -8,16 +8,19 @@ before_install:
     - tar xf sdl2.tar.gz
     - cd SDL2-2.0.12
     - sudo make install-package arch=x86_64-w64-mingw32 prefix=/usr/x86_64-w64-mingw32
+    - cp -r x86_64-w64-mingw32/include/SDL2 /usr/x86_64-w64-mingw32/include/
     - cd ..
     - curl https://www.libsdl.org/projects/SDL_image/release/SDL2_image-devel-2.0.5-mingw.tar.gz --output sdlimg.tar.gz
     - tar xf sdlimg.tar.gz
     - cd SDL2_image-2.0.5
     - sudo make install-package arch=x86_64-w64-mingw32 prefix=/usr
+    - cp -r x86_64-w64-mingw32/include/SDL2 /usr/x86_64-w64-mingw32/include/
     - cd ..
     - curl https://www.libsdl.org/projects/SDL_ttf/release/SDL2_ttf-devel-2.0.15-mingw.tar.gz --output sdl2ttf.tar.gz
     - tar xf sdl2ttf.tar.gz
     - cd SDL2_ttf-2.0.15
     - sudo make install-package arch=x86_64-w64-mingw32 prefix=/usr
+    - cp -r x86_64-w64-mingw32/include/SDL2 /usr/x86_64-w64-mingw32/include/
     - cd ..
     - sudo cp -r /usr/i686-w64-mingw32/include /usr/x86_64-w64-mingw32/include
     - ls /usr/include
