@@ -2,7 +2,7 @@
 BuildItems=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x01\x00\x00\x00\x0b\x00\x00\x00\x00\x01\x00\x00\x00\x12\x00P\x00r\x00o\x00j\x00e\x00c\x00t\x00V\x00N)
 
 [Launch]
-Launch Configurations=Launch Configuration 0
+Launch Configurations=Launch Configuration 0,Launch Configuration 1
 
 [Launch][Launch Configuration 0]
 Configured Launch Modes=execute
@@ -16,6 +16,24 @@ Dependencies=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x00)
 Dependency Action=Nothing
 EnvironmentGroup=
 Executable=file:///home/anzo/Storage/Drive2/Projects/ProjectVN/projectvn
+External Terminal=konsole --noclose --workdir %workdir -e %exe
+Project Target=
+Use External Terminal=false
+Working Directory=
+isExecutable=true
+
+[Launch][Launch Configuration 1]
+Configured Launch Modes=execute
+Configured Launchers=nativeAppLauncher
+Name=Laptop
+Type=Native Application
+
+[Launch][Launch Configuration 1][Data]
+Arguments=--test
+Dependencies=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x00)
+Dependency Action=Nothing
+EnvironmentGroup=
+Executable=file:///home/anzo/projects/ProjectVN/projectvn
 External Terminal=konsole --noclose --workdir %workdir -e %exe
 Project Target=
 Use External Terminal=false
