@@ -25,6 +25,7 @@ before_install:
     - sudo cp -r /usr/include/AL /usr/x86_64-w64-mingw32/include/
     - sudo cp -r /usr/include/vorbis /usr/x86_64-w64-mingw32/include/
     - sudo cp -r /usr/include/ogg /usr/x86_64-w64-mingw32/include/
+    - sudo cp -r /usr/lib /usr/x86_64-w64-mingw32/lib
 
 addons:
   apt:
