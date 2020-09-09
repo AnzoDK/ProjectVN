@@ -21,7 +21,6 @@ before_install:
     - cd ..
     - sudo cp -r /usr/i686-w64-mingw32/include /usr/x86_64-w64-mingw32/include
     - ls /usr/include
-    - sudo cp -r /usr/include/SDL2 /usr/x86_64-w64-mingw32/include/
     - sudo cp -r /usr/include/AL /usr/x86_64-w64-mingw32/include/
     - sudo cp -r /usr/include/vorbis /usr/x86_64-w64-mingw32/include/
     - sudo cp -r /usr/include/ogg /usr/x86_64-w64-mingw32/include/
