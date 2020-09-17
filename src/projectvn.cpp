@@ -285,4 +285,5 @@ void DeathScene::Init()
     AddObject(bg);
     
 }
-
+//New object Registers
+DerivedRegister<OptionsButton> OptionsButton::reg("OptionsButton");
