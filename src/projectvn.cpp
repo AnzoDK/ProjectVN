@@ -35,7 +35,7 @@ Game::Game()
 void Game::init()
 {
   Game::Engine->init();
-  Game::Engine->CreateMainWindow("ProjectVN",0,1s);
+  Game::Engine->CreateMainWindow("ProjectVN",0,1);
   MainMenu* mm = new MainMenu();
   OptionsMenu* om = new OptionsMenu();
   mm->SetName("MainMenu");
