@@ -1,5 +1,9 @@
 #!/bin/bash
 #ProjectVN dependency resolver
+
+MakeType="optimizedLib"
+DebugLevel="DEBUG_LEVEL=-O2"
+echo $DebugLevel
 git --version &> /dev/null
 if [ $? -eq 0 ]
 then
@@ -35,7 +39,7 @@ then
             rm -r -f RPEngine
             exit 1
         fi
-        make lib OS=Windows
+        make $MakeType $Debug_Level OS=Windows
 		cp includes/RPAudio/librpaudio.dll ../includes/RPAudio/
 		cp rpengine.so ../includes/RPEngine/librpengine.dll
 		mv -f includes/RPAudio/librpaudio.a ../includes/RPAudio/librpaudio.a
@@ -51,7 +55,7 @@ then
             rm -r -f RPEngine
             exit 1
         fi
-        make lib OS=Linux
+        make $MakeType $Debug_Level OS=Linux
 		cp includes/RPAudio/librpaudio.so ../includes/RPAudio/
 		cp rpengine.so ../includes/RPEngine/librpengine.so
 	fi
@@ -64,7 +68,7 @@ else
             rm -r -f RPEngine
             exit 1
         fi
-        make lib OS=Windows
+        make $MakeType $Debug_Level OS=Windows
         cp includes/RPAudio/librpaudio.dll ../includes/RPAudio/
 		cp rpengine.dll ../includes/RPEngine/librpengine.dll
         cp includes/RPAudio/librpaudio.a ../includes/RPAudio/
@@ -78,7 +82,7 @@ else
             rm -r -f RPEngine
             exit 1
         fi
-        make lib OS=Linux
+        make $MakeType $Debug_Level OS=Linux
 		cp includes/RPAudio/librpaudio.so ../includes/RPAudio/
 		cp rpengine.so ../includes/RPEngine/librpengine.so
 		mv -f includes/RPAudio/librpaudio.a ../includes/RPAudio/librpaudio.a
