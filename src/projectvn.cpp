@@ -1,4 +1,5 @@
 #include "../includes/projectvn.h"
+#include <SDL2/SDL_opengl.h>
 using namespace rp;
 RosenoernEngine* Game::Engine = new RosenoernEngine(1,10);
 //Game
@@ -34,7 +35,7 @@ Game::Game()
 void Game::init()
 {
   Game::Engine->init();
-  Game::Engine->CreateMainWindow("ProjectVN",0);
+  Game::Engine->CreateMainWindow("ProjectVN",0,1s);
   MainMenu* mm = new MainMenu();
   OptionsMenu* om = new OptionsMenu();
   mm->SetName("MainMenu");

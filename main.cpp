@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
     /*Ini ini = Ini("test.ini");
     std::cout << atoi(ini.GetKey("Game Settings")->GetSubKey("playerHeight").c_str()) << std::endl;
     */
-    Game::Engine->LoadSceneFromFile("testScene1.rps");
+    //Game::Engine->LoadSceneFromFile("testScene1.rps");
     while(Game::Engine->isRunning)
     {
       if(test)
