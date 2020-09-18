@@ -235,9 +235,9 @@ void DeathAnimation::Update()
 {
     if(!IsDone() && GetStatus()==RunningState::Running)
     {
-        if(Game::Engine->GetObject("Background01")!= nullptr && obj == nullptr)
+        if(Game::Engine->GetSceneObject("Background01")!= nullptr && obj == nullptr)
         {
-            obj = Game::Engine->GetObject("Background01");
+            obj = Game::Engine->GetSceneObject("Background01");
             obj->TexMod.modB = 0;
             obj->TexMod.modG = 0;
         }
