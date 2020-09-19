@@ -106,6 +106,7 @@ else
 		fi
         	if [ $? -ne 0 ]
         	then
+			cd ..
             		rm -r -f RPEngine
             		exit 1
         	fi
