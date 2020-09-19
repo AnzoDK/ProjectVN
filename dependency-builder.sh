@@ -1,7 +1,7 @@
 #!/bin/bash
 #ProjectVN dependency resolver
 
-DebugLevel="DEBUG_LEVEL=-g3"
+Debug_Level="DEBUG_LEVEL=-g3"
 
 for i in "$@"
 do
