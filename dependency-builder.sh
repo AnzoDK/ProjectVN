@@ -99,6 +99,7 @@ else
         	cp ../includes/RPAudio/librpaudio.dll ../rpaudio.dll
 	else
 		if [ "$1" == "--optimize" ]
+		then
 			./dependency-builder.sh
 		else
 			./dependency-builder.sh --optimize
