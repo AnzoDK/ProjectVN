@@ -69,8 +69,9 @@ then
 		fi
         	if [ $? -ne 0 ]
         	then
+			cd ..
             		rm -r -f RPEngine
-            	exit 1
+            		exit 1
        		fi
         	make $Debug_Level OS=Linux
 		cp includes/RPAudio/librpaudio.so ../includes/RPAudio/
@@ -87,6 +88,7 @@ else
 		fi
         	if [ $? -ne 0 ]
         	then
+			cd ..
             		rm -r -f RPEngine
             		exit 1
         	fi
