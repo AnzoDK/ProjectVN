@@ -1,5 +1,6 @@
 #pragma once
 #include "RPEngine/RPEngine.h"
+#include "RPEngine/RPIni.h"
 using namespace rp;
 //Here is where we create all the objects we need for the game
 
@@ -48,6 +49,7 @@ class OptionsButton : public Button
         void Parse(std::vector<Base*>& vec) override;
     private:
         ButtonImage* buttonImg;
+        static DerivedRegister<OptionsButton> reg;
 };
 class OptionsMenu : public MainMenu
 {

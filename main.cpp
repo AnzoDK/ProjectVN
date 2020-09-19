@@ -20,8 +20,10 @@ int main(int argc, char *argv[])
     RosenoernAudio& ra = Game::Engine->GetAudioController();
     /*ra.AddToQueue("Resources/sound/music/mp3.mp3");
     ra.PlayFromQueue();*/
-    Ini ini = Ini("test.ini");
+    /*Ini ini = Ini("test.ini");
     std::cout << atoi(ini.GetKey("Game Settings")->GetSubKey("playerHeight").c_str()) << std::endl;
+    */
+    //Game::Engine->LoadSceneFromFile("testScene1.rps");
     while(Game::Engine->isRunning)
     {
       if(test)

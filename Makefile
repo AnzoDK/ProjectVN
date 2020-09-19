@@ -10,6 +10,7 @@ CXX_FLAGS := -std=c++17 -Wall -pthread
 LINK := -lrpengine -lrpaudio
 SRC := ./src
 OS := Linux
+DEBUG_LEVEL:=-O2
 
 ifeq ($(OS), Windows)
 	CXX:= x86_64-w64-mingw32-g++

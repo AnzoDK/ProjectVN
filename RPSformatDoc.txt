@@ -1,0 +1,11 @@
+RPS Fileformat documentation:
+ByteOrder: Big Endian
+
+Header:
+The file start with a header - The header should always be 'RPS' followed by 2 bytes for version.
+The bytes can be saftly converted to a 16bit integer.
+
+Objects:
+Objects in the file starts with a 0xF0 byte followed by a 0x0F byte - After this the objects properties are saved in small tags that are identified by a 1 byte Hex counter.
+
+0x01: Should be followed by a single byte to tell the length of the 0x01 (Name) tag. Note that the length byte is not a part of the length itself. Example: "TestObject" would be 0A, so 0x01 0x0A...

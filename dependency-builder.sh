@@ -1,5 +1,16 @@
 #!/bin/bash
 #ProjectVN dependency resolver
+
+DebugLevel="DEBUG_LEVEL=-g3"
+
+for i in "$@"
+do
+	if [ "$i" == "--optimized" ]
+	then
+		DebugLevel="DEBUG_LEVEL=-O2"
+	fi
+done
+
 git --version &> /dev/null
 if [ $? -eq 0 ]
 then
@@ -29,56 +40,75 @@ if [ "$1" == "--use-dev" ]
 then
 	if [ "$2" == "--Windows" ]
 	then
-		./dependency-builder.sh --use-dev --Windows
+		if [ "$3" == "--optimize" ]
+		then
+			./dependency-builder.sh --use-dev --Windows --optimize
+		else
+			./dependency-builder.sh --use-dev --Windows
+		fi
 		if [ $? -ne 0 ]
-        then
-            rm -r -f RPEngine
-            exit 1
-        fi
-        make lib OS=Windows
+        	then
+            		rm -r -f RPEngine
+            		exit 1
+       		fi
+        	make $Debug_Level OS=Windows
 		cp includes/RPAudio/librpaudio.dll ../includes/RPAudio/
 		cp rpengine.so ../includes/RPEngine/librpengine.dll
 		mv -f includes/RPAudio/librpaudio.a ../includes/RPAudio/librpaudio.a
 		cp rpengine.dll ../includes/RPEngine/librpengine.dll
 		cp includes/RPAudio/librpaudio.a ../includes/RPAudio/
 		cp librpengine.a ../includes/RPEngine/librpengine.a
-        cp ../includes/RPEngine/librpengine.dll ../rpengine.dll
-        cp ../includes/RPAudio/librpaudio.dll ../rpaudio.dll
+        	cp ../includes/RPEngine/librpengine.dll ../rpengine.dll
+        	cp ../includes/RPAudio/librpaudio.dll ../rpaudio.dll
 	else
-		./dependency-builder.sh --use-dev
-        if [ $? -ne 0 ]
-        then
-            rm -r -f RPEngine
-            exit 1
-        fi
-        make lib OS=Linux
+		if [ "$2" == "--optimize" ]
+		then
+			./dependency-builder.sh --use-dev --optimize
+		else
+			./dependency-builder.sh --use-dev
+		fi
+        	if [ $? -ne 0 ]
+        	then
+            		rm -r -f RPEngine
+            	exit 1
+       		fi
+        	make $Debug_Level OS=Linux
 		cp includes/RPAudio/librpaudio.so ../includes/RPAudio/
 		cp rpengine.so ../includes/RPEngine/librpengine.so
 	fi
 else
 	if [ "$1" == "--Windows" ]
 	then
-		./dependency-builder.sh --Windows
-        if [ $? -ne 0 ]
-        then
-            rm -r -f RPEngine
-            exit 1
-        fi
-        make lib OS=Windows
-        cp includes/RPAudio/librpaudio.dll ../includes/RPAudio/
+		if [ "$2" == "--optimize" ]
+		then
+			./dependency-builder.sh --Windows
+		else
+			./dependency-builder.sh --Windows --optimize
+		fi
+        	if [ $? -ne 0 ]
+        	then
+            		rm -r -f RPEngine
+            		exit 1
+        	fi
+        	make $Debug_Level OS=Windows
+        	cp includes/RPAudio/librpaudio.dll ../includes/RPAudio/
 		cp rpengine.dll ../includes/RPEngine/librpengine.dll
-        cp includes/RPAudio/librpaudio.a ../includes/RPAudio/
+        	cp includes/RPAudio/librpaudio.a ../includes/RPAudio/
 		cp librpengine.a ../includes/RPEngine/librpengine.a
 		cp ../includes/RPEngine/librpengine.dll ../rpengine.dll
-        cp ../includes/RPAudio/librpaudio.dll ../rpaudio.dll
+        	cp ../includes/RPAudio/librpaudio.dll ../rpaudio.dll
 	else
-		./dependency-builder.sh
-        if [ $? -ne 0 ]
-        then
-            rm -r -f RPEngine
-            exit 1
-        fi
-        make lib OS=Linux
+		if [ "$1" == "--optimize" ]
+			./dependency-builder.sh
+		else
+			./dependency-builder.sh --optimize
+		fi
+        	if [ $? -ne 0 ]
+        	then
+            		rm -r -f RPEngine
+            		exit 1
+        	fi
+        	make $Debug_Level OS=Linux
 		cp includes/RPAudio/librpaudio.so ../includes/RPAudio/
 		cp rpengine.so ../includes/RPEngine/librpengine.so
 		mv -f includes/RPAudio/librpaudio.a ../includes/RPAudio/librpaudio.a

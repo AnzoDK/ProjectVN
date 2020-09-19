@@ -1,4 +1,5 @@
 #include "../includes/projectvn.h"
+#include <SDL2/SDL_opengl.h>
 using namespace rp;
 RosenoernEngine* Game::Engine = new RosenoernEngine(1,10);
 //Game
@@ -34,7 +35,7 @@ Game::Game()
 void Game::init()
 {
   Game::Engine->init();
-  Game::Engine->CreateMainWindow("ProjectVN",0);
+  Game::Engine->CreateMainWindow("ProjectVN",0,1);
   MainMenu* mm = new MainMenu();
   OptionsMenu* om = new OptionsMenu();
   mm->SetName("MainMenu");
@@ -235,9 +236,9 @@ void DeathAnimation::Update()
 {
     if(!IsDone() && GetStatus()==RunningState::Running)
     {
-        if(Game::Engine->GetObject("Background01")!= nullptr && obj == nullptr)
+        if(Game::Engine->GetSceneObject("Background01")!= nullptr && obj == nullptr)
         {
-            obj = Game::Engine->GetObject("Background01");
+            obj = Game::Engine->GetSceneObject("Background01");
             obj->TexMod.modB = 0;
             obj->TexMod.modG = 0;
         }
@@ -285,4 +286,5 @@ void DeathScene::Init()
     AddObject(bg);
     
 }
-
+//New object Registers
+DerivedRegister<OptionsButton> OptionsButton::reg("OptionsButton");
