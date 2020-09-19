@@ -3,6 +3,9 @@
 
 Debug_Level="DEBUG_LEVEL=-g3"
 
+mkdir -p ./includes/RPAudio/
+mkdir -p ./includes/RPEngine
+
 for i in "$@"
 do
 	if [ "$i" == "--optimized" ]
