@@ -7,7 +7,7 @@ for i in "$@"
 do
 	if [ "$i" == "--optimized" ]
 	then
-		DebugLevel="DEBUG_LEVEL=-O2"
+		Debug_Level="DEBUG_LEVEL=-O2"
 	fi
 done
 
