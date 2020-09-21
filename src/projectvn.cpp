@@ -44,7 +44,7 @@ void Game::init()
   s->AddObject(mm);
   s->AddObject(om);
   Game::Engine->SetScene(s);
-  Game::Engine->SetFPS(60);
+  Game::Engine->SetFPS(120);
   
   
 }
@@ -248,11 +248,11 @@ void DeathAnimation::Update()
             obj->TexMod.modA = a;
             if(r < 255)
             {
-                r+= 0.5f;
+                r+= 0.5f*(60/Game::Engine->FPS);
             }
             if(a < 255)
             {
-                a+= 0.5f; //This should be converted to an int in a floor like way
+                a+= 0.5f*(60/Game::Engine->FPS); //This should be converted to an int in a floor like way
             }
             if(r == 255 && a == 255)
             {
