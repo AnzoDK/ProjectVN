@@ -1,13 +1,16 @@
 #!/bin/bash
 #ProjectVN dependency resolver
 
-DebugLevel="DEBUG_LEVEL=-g3"
+Debug_Level="DEBUG_LEVEL=-g3"
+
+mkdir -p ./includes/RPAudio/
+mkdir -p ./includes/RPEngine
 
 for i in "$@"
 do
 	if [ "$i" == "--optimized" ]
 	then
-		DebugLevel="DEBUG_LEVEL=-O2"
+		Debug_Level="DEBUG_LEVEL=-O2"
 	fi
 done
 
@@ -51,7 +54,7 @@ then
             		rm -r -f RPEngine
             		exit 1
        		fi
-        	make $Debug_Level OS=Windows
+        	make lib $Debug_Level OS=Windows
 		cp includes/RPAudio/librpaudio.dll ../includes/RPAudio/
 		cp rpengine.so ../includes/RPEngine/librpengine.dll
 		mv -f includes/RPAudio/librpaudio.a ../includes/RPAudio/librpaudio.a
@@ -69,10 +72,11 @@ then
 		fi
         	if [ $? -ne 0 ]
         	then
+			cd ..
             		rm -r -f RPEngine
-            	exit 1
+            		exit 1
        		fi
-        	make $Debug_Level OS=Linux
+        	make lib $Debug_Level OS=Linux
 		cp includes/RPAudio/librpaudio.so ../includes/RPAudio/
 		cp rpengine.so ../includes/RPEngine/librpengine.so
 	fi
@@ -87,10 +91,11 @@ else
 		fi
         	if [ $? -ne 0 ]
         	then
+			cd ..
             		rm -r -f RPEngine
             		exit 1
         	fi
-        	make $Debug_Level OS=Windows
+        	make lib $Debug_Level OS=Windows
         	cp includes/RPAudio/librpaudio.dll ../includes/RPAudio/
 		cp rpengine.dll ../includes/RPEngine/librpengine.dll
         	cp includes/RPAudio/librpaudio.a ../includes/RPAudio/
@@ -106,10 +111,11 @@ else
 		fi
         	if [ $? -ne 0 ]
         	then
+			cd ..
             		rm -r -f RPEngine
             		exit 1
         	fi
-        	make $Debug_Level OS=Linux
+        	make lib $Debug_Level OS=Linux
 		cp includes/RPAudio/librpaudio.so ../includes/RPAudio/
 		cp rpengine.so ../includes/RPEngine/librpengine.so
 		mv -f includes/RPAudio/librpaudio.a ../includes/RPAudio/librpaudio.a
