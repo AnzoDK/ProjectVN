@@ -236,6 +236,7 @@ void DeathAnimation::Update()
 {
     if(!IsDone() && GetStatus()==RunningState::Running)
     {
+        float fpsOffset = (60/Game::Engine->FPS);
         if(Game::Engine->GetSceneObject("Background01")!= nullptr && obj == nullptr)
         {
             obj = Game::Engine->GetSceneObject("Background01");
@@ -248,11 +249,11 @@ void DeathAnimation::Update()
             obj->TexMod.modA = a;
             if(r < 255)
             {
-                r+= 0.5f*(60/Game::Engine->FPS);
+                r+= 0.5f*fpsOffset;
             }
             if(a < 255)
             {
-                a+= 0.5f*(60/Game::Engine->FPS); //This should be converted to an int in a floor like way
+                a+= 0.5f*fpsOffset; //This should be converted to an int in a floor like way
             }
             if(r == 255 && a == 255)
             {
