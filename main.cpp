@@ -1,6 +1,8 @@
 #include <iostream>
 #include <cstring>
 #include "includes/projectvn.h"
+#include <thread>
+#include <functional>
 int main(int argc, char *argv[])
 {
     bool test = 0;
@@ -16,7 +18,8 @@ int main(int argc, char *argv[])
     using namespace rp;
     std::cout << "Hello, world!" << std::endl;
     Game* game = new Game();
-    game->init();
+    std::thread initThread (&Game::init, game);
+    std::cout << "ProjectVN is initlizing the project specific classes and functions - please wait" << std::endl;
     RosenoernAudio& ra = Game::Engine->GetAudioController();
     /*ra.AddToQueue("Resources/sound/music/mp3.mp3");
     ra.PlayFromQueue();*/
@@ -24,6 +27,8 @@ int main(int argc, char *argv[])
     std::cout << atoi(ini.GetKey("Game Settings")->GetSubKey("playerHeight").c_str()) << std::endl;
     */
     //Game::Engine->LoadSceneFromFile("testScene1.rps");
+    initThread.join();
+    std::cout << "Done loading" << std::endl;
     while(Game::Engine->isRunning)
     {
       if(test)

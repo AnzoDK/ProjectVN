@@ -44,7 +44,7 @@ void Game::init()
   s->AddObject(mm);
   s->AddObject(om);
   Game::Engine->SetScene(s);
-  Game::Engine->SetFPS(60);
+  Game::Engine->SetFPS(120);
   
   
 }
