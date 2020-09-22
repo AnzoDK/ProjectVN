@@ -25,7 +25,6 @@ int main(int argc, char *argv[])
     std::cout << atoi(ini.GetKey("Game Settings")->GetSubKey("playerHeight").c_str()) << std::endl;
     */
     //Game::Engine->LoadSceneFromFile("testScene1.rps");
-    initThread.join();
     std::cout << "Done loading" << std::endl;
     while(Game::Engine->isRunning)
     {
