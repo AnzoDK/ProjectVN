@@ -1,7 +1,6 @@
 #include <iostream>
 #include <cstring>
 #include "includes/projectvn.h"
-#include <thread>
 #include <functional>
 int main(int argc, char *argv[])
 {
@@ -18,8 +17,7 @@ int main(int argc, char *argv[])
     using namespace rp;
     std::cout << "Hello, world!" << std::endl;
     Game* game = new Game();
-    std::thread initThread (&Game::init, game);
-    std::cout << "ProjectVN is initlizing the project specific classes and functions - please wait" << std::endl;
+    game->init();
     RosenoernAudio& ra = Game::Engine->GetAudioController();
     /*ra.AddToQueue("Resources/sound/music/mp3.mp3");
     ra.PlayFromQueue();*/
