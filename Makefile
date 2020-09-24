@@ -37,8 +37,8 @@ release: projectvn.o main.o
 	$(CXX) $(PG) $(DEBUG_LEVEL) $(CXX_FLAGS) $(INCLUDES) $(SO_DIRS) $(OBJECTS) -o projectvn $(LINK)
 	make clean
 dev-deps: projectvn.o main.o
-	./RPScriptLinker $(SCRIPTS)
 	./dependency-builder.sh --use-dev
+	./RPScriptLinker $(SCRIPTS)
 	$(CXX) $(PG) $(DEBUG_LEVEL) $(CXX_FLAGS) $(INCLUDES) $(SO_DIRS) $(OBJECTS) -o projectvn $(LINK)
 	make clean
 no-dep: projectvn.o main.o

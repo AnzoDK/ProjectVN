@@ -13,3 +13,5 @@ vgcore.*
 GameLog.log
 .kdev4/ProjectVN.kdev4
 .kdev4/*
+RPScriptLinker
+RPScriptLinker.exe
