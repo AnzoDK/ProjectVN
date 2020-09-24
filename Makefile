@@ -1,4 +1,4 @@
-SO_DIRS := -Wl,-rpath,./includes/RPEngine -L./includes/RPEngine -Wl,-rpath,./includes/RPAudio -L./includes/RPAudio
+SO_DIRS := -Wl,-rpath,./includes/RPEngine -L./includes/RPEngine -Wl,-rpath,./includes/RPAudio -L./includes/RPAudio -Wl,-rpath,./includes/RPAudio/libsndio -L./includes/RPAudio/libsndio
 DEBUG_LEVEL := -g3
 PG:=
 CXX := g++
@@ -22,7 +22,7 @@ ifeq ($(OS), Windows)
 	LINK += -static-libgcc -static-libstdc++ -Wl,-Bstatic -lstdc++ -lpthread -Wl,-Bdynamic -lmingw32 -lSDL2main -lSDL2 -mwindows -lSDL2_image -lSDL2_ttf 
 endif
 ifeq ($(OS), Linux)
-	LINK += -lSDL2 -lSDL2_image -lSDL2_ttf
+	LINK += -lSDL2 -lSDL2_image -lSDL2_ttf -lsndio
 endif
 
 dev-deps-windows: projectvn.o main.o
