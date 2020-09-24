@@ -301,7 +301,7 @@ void DeathAnimation::Update()
 
 void DeathAnimation::Reverse()
 {
-    _reverse *=-1;
+    _reverse = !_reverse;
     SetDone(0);
     SetStatus(RunningState::Running);
     obj = nullptr;

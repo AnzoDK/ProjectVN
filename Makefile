@@ -14,6 +14,8 @@ OS := Linux
 
 #Default we load from this path
 SCRIPTS := ./Resources/scripts
+#Default
+RPPATH := ./includes/RPEngine
 ifeq ($(OS), Windows)
 	CXX:= x86_64-w64-mingw32-g++
 	CXX_FLAGS += 
@@ -25,11 +27,11 @@ endif
 
 dev-deps-windows: projectvn.o main.o
 	./dependency-builder.sh --use-dev --Windows
-	./RPScriptLinker $(SCRIPTS)
+	./RPScriptLinker $(SCRIPTS) $(RPPATH)
 	$(CXX) $(PG) $(DEBUG_LEVEL) $(CXX_FLAGS) $(INCLUDES) $(SO_DIRS) $(OBJECTS) -o projectvn.exe $(LINK)
 	make clean
 no-dep-windows: projectvn.o main.o
-	./RPScriptLinker $(SCRIPTS)
+	./RPScriptLinker $(SCRIPTS) $(RPPATH)
 	$(CXX) $(DEBUG_LEVEL) $(CXX_FLAGS) $(INCLUDES) $(SO_DIRS) $(OBJECTS) -o projectvn.exe $(LINK)
 	make clean
 release: projectvn.o main.o
@@ -38,11 +40,11 @@ release: projectvn.o main.o
 	make clean
 dev-deps: projectvn.o main.o
 	./dependency-builder.sh --use-dev
-	./RPScriptLinker $(SCRIPTS)
+	./RPScriptLinker $(SCRIPTS) $(RPPATH)
 	$(CXX) $(PG) $(DEBUG_LEVEL) $(CXX_FLAGS) $(INCLUDES) $(SO_DIRS) $(OBJECTS) -o projectvn $(LINK)
 	make clean
 no-dep: projectvn.o main.o
-	./RPScriptLinker $(SCRIPTS)
+	./RPScriptLinker $(SCRIPTS) $(RPPATH)
 	$(CXX) $(PG) $(DEBUG_LEVEL) $(CXX_FLAGS) $(INCLUDES) $(SO_DIRS) $(OBJECTS) -o projectvn $(LINK)
 	make clean
 projectvn.o:

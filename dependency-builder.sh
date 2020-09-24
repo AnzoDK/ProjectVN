@@ -45,6 +45,7 @@ mkdir -p ../includes/RPAudio/oggvorbis
 mkdir -p ../includes/RPAudio/vorbis
 mkdir -p ../includes/RPAudio/vorbisfile
 mkdir -p ../includes/RPAudio/libopenal
+mkdir -p ../includes/RPAudio/libsndio
 if [ "$1" == "--use-dev" ]
 then
 	if [ "$2" == "--Windows" ]
@@ -135,6 +136,7 @@ cp -f includes/RPAudio/oggvorbis/* ../includes/RPAudio/oggvorbis/
 cp -f includes/RPAudio/vorbis/* ../includes/RPAudio/vorbis/
 cp -f includes/RPAudio/libopenal/* ../includes/RPAudio/libopenal/
 cp -f includes/RPAudio/vorbisfile/* ../includes/RPAudio/vorbisfile/
+cp -f includes/RPAudio/libsndio/* ../includes/RPAudio/libsndio/
 cp includes/*.h ../includes/RPEngine/
 cp includes/RPAudio/*.h ../includes/RPAudio/
 cd ..
