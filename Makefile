@@ -11,7 +11,9 @@ CXX_FLAGS := -std=c++17 -Wall -pthread
 LINK := -lrpengine -lrpaudio
 SRC := ./src
 OS := Linux
-SCRIPTS :=
+
+#Default we load from this path
+SCRIPTS := ./Resources/scripts
 ifeq ($(OS), Windows)
 	CXX:= x86_64-w64-mingw32-g++
 	CXX_FLAGS += 
