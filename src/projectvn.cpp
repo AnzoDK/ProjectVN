@@ -231,6 +231,7 @@ void DeathAnimation::Init()
     r = 0;
     obj = nullptr;
     SetStatus(RunningState::Running);
+    _reverse = 0;
 }
 void DeathAnimation::Update()
 {
@@ -241,31 +242,72 @@ void DeathAnimation::Update()
         if(Game::Engine->GetSceneObject("Background01")!= nullptr && obj == nullptr)
         {
             obj = Game::Engine->GetSceneObject("Background01");
-            obj->TexMod.modB = 0;
-            obj->TexMod.modG = 0;
+            if(!_reverse)
+            {
+                obj->TexMod.modB = 0;
+                obj->TexMod.modG = 0;
+            }
+            else
+            {
+                obj->TexMod.modB = 255;
+                obj->TexMod.modG = 255;
+            }
+            
         }
         else
         {
-            obj->TexMod.modR = r;
-            obj->TexMod.modA = a;
-            if(r < 255)
+            if(!_reverse)
             {
-                r+= 0.1*fpsOffset;
+                obj->TexMod.modR = r;
+                obj->TexMod.modA = a;
+                if(r < 255)
+                {
+                    r+= 0.1*fpsOffset;
+                }
+                if(a < 255)
+                {
+                    a+= 0.1*fpsOffset; //This should be converted to an int in a floor like way
+                }
+                if(r >= 255 && a >= 255)
+                {
+                    r = a = 255;
+                    SetDone(1);
+                    SetStatus(RunningState::Stopped);
+                }
             }
-            if(a < 255)
+            else
             {
-                a+= 0.1*fpsOffset; //This should be converted to an int in a floor like way
-            }
-            if(r >= 255 && a >= 255)
-            {
-                r = a = 255;
-                SetDone(1);
-                SetStatus(RunningState::Stopped);
+                obj->TexMod.modR = r;
+                obj->TexMod.modA = a;
+                if(r > 0)
+                {
+                    r-= 0.1*fpsOffset;
+                }
+                if(a > 0)
+                {
+                    a-= 0.1*fpsOffset; //This should be converted to an int in a floor like way
+                }
+                if(r <= 0 && a <= 0)
+                {
+                    r = a = 0;
+                    SetDone(1);
+                    SetStatus(RunningState::Stopped);
+                }
             }
         
         }
     }
 }
+
+void DeathAnimation::Reverse()
+{
+    _reverse *=-1;
+    SetDone(0);
+    SetStatus(RunningState::Running);
+    obj = nullptr;
+    
+}
+
 
 
 

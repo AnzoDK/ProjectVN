@@ -65,14 +65,16 @@ class OptionsMenu : public MainMenu
 class DeathAnimation : public SimpleAnimationBase
 {
     public:
-        DeathAnimation(){Init();}
+        DeathAnimation(){Init(); _reverse = 0;}
         virtual ~DeathAnimation(){}
         virtual void Init() override;
         virtual void Update() override;
+        void Reverse();
     private:
         float r;
         float a;
         Base* obj;
+        bool _reverse;
         
 };
 

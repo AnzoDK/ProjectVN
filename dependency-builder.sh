@@ -39,6 +39,12 @@ then
 fi
 
 cd RPEngine
+mkdir -p ../includes/RPEngine
+mkdir -p ../includes/RPAudio
+mkdir -p ../includes/RPAudio/oggvorbis
+mkdir -p ../includes/RPAudio/vorbis
+mkdir -p ../includes/RPAudio/vorbisfile
+mkdir -p ../includes/RPAudio/libopenal
 if [ "$1" == "--use-dev" ]
 then
 	if [ "$2" == "--Windows" ]
@@ -48,21 +54,22 @@ then
 			./dependency-builder.sh --use-dev --Windows --optimize
 		else
 			./dependency-builder.sh --use-dev --Windows
-		fi
-		if [ $? -ne 0 ]
+        fi
+        if [ $? -ne 0 ]
         	then
             		rm -r -f RPEngine
             		exit 1
        		fi
-        	make lib $Debug_Level OS=Windows
+        make lib $Debug_Level OS=Windows
 		cp includes/RPAudio/librpaudio.dll ../includes/RPAudio/
 		cp rpengine.so ../includes/RPEngine/librpengine.dll
 		mv -f includes/RPAudio/librpaudio.a ../includes/RPAudio/librpaudio.a
 		cp rpengine.dll ../includes/RPEngine/librpengine.dll
 		cp includes/RPAudio/librpaudio.a ../includes/RPAudio/
 		cp librpengine.a ../includes/RPEngine/librpengine.a
-        	cp ../includes/RPEngine/librpengine.dll ../rpengine.dll
-        	cp ../includes/RPAudio/librpaudio.dll ../rpaudio.dll
+        cp ../includes/RPEngine/librpengine.dll ../rpengine.dll
+        cp ../includes/RPAudio/librpaudio.dll ../rpaudio.dll
+        cp RPScriptLinker.exe ../RPScriptLinker.exe
 	else
 		if [ "$2" == "--optimize" ]
 		then
@@ -76,9 +83,10 @@ then
             		rm -r -f RPEngine
             		exit 1
        		fi
-        	make lib $Debug_Level OS=Linux
+        make lib $Debug_Level OS=Linux
 		cp includes/RPAudio/librpaudio.so ../includes/RPAudio/
 		cp rpengine.so ../includes/RPEngine/librpengine.so
+		cp RPScriptLinker ../RPScriptLinker
 	fi
 else
 	if [ "$1" == "--Windows" ]
@@ -97,11 +105,12 @@ else
         	fi
         	make lib $Debug_Level OS=Windows
         	cp includes/RPAudio/librpaudio.dll ../includes/RPAudio/
-		cp rpengine.dll ../includes/RPEngine/librpengine.dll
+            cp rpengine.dll ../includes/RPEngine/librpengine.dll
         	cp includes/RPAudio/librpaudio.a ../includes/RPAudio/
-		cp librpengine.a ../includes/RPEngine/librpengine.a
-		cp ../includes/RPEngine/librpengine.dll ../rpengine.dll
+            cp librpengine.a ../includes/RPEngine/librpengine.a
+            cp ../includes/RPEngine/librpengine.dll ../rpengine.dll
         	cp ../includes/RPAudio/librpaudio.dll ../rpaudio.dll
+        	cp RPScriptLinker.exe ../RPScriptLinker.exe
 	else
 		if [ "$1" == "--optimize" ]
 		then
@@ -119,14 +128,9 @@ else
 		cp includes/RPAudio/librpaudio.so ../includes/RPAudio/
 		cp rpengine.so ../includes/RPEngine/librpengine.so
 		mv -f includes/RPAudio/librpaudio.a ../includes/RPAudio/librpaudio.a
+		cp RPScriptLinker ../RPScriptLinker
 	fi
 fi
-mkdir -p ../includes/RPEngine
-mkdir -p ../includes/RPAudio
-mkdir -p ../includes/RPAudio/oggvorbis
-mkdir -p ../includes/RPAudio/vorbis
-mkdir -p ../includes/RPAudio/vorbisfile
-mkdir -p ../includes/RPAudio/libopenal
 cp -f includes/RPAudio/oggvorbis/* ../includes/RPAudio/oggvorbis/
 cp -f includes/RPAudio/vorbis/* ../includes/RPAudio/vorbis/
 cp -f includes/RPAudio/libopenal/* ../includes/RPAudio/libopenal/
