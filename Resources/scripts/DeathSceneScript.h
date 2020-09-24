@@ -1,16 +1,19 @@
 #pragma once
-#include "RPEngine/RPEngine.h"
+#include "RPEngine/RPSceneScript.h"
+#include "RPEngine/RPScene.h"
+#include "projectvn.h"
 
-using namespace rp;
-
+namespace rp
+{
 class DeathSceneScript : public SceneScriptBase
 {
     public:
         DeathSceneScript(){}
         virtual ~DeathSceneScript(){}
-        virtual void Update() override{}
+        virtual void Update(Scene& currScene, Base& currObj) override;
     private:
     
 };
+}
 
 

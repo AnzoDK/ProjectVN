@@ -14,6 +14,7 @@ Name=Clang
 
 [CustomDefinesAndIncludes][ProjectPath0][Includes]
 1=/home/anzo/projects/ProjectVN/includes
+2=/home/anzo/Storage/Drive2/Projects/ProjectVN/includes/
 
 [Launch]
 Launch Configurations=Launch Configuration 0,Launch Configuration 1

@@ -137,7 +137,15 @@ cp -f includes/RPAudio/vorbis/* ../includes/RPAudio/vorbis/
 cp -f includes/RPAudio/libopenal/* ../includes/RPAudio/libopenal/
 cp -f includes/RPAudio/vorbisfile/* ../includes/RPAudio/vorbisfile/
 cp -f includes/RPAudio/libsndio/* ../includes/RPAudio/libsndio/
-cp includes/*.h ../includes/RPEngine/
+FILE=../includes/RPEngine/importedClasses.h
+if [ -f "$FILE" ]
+then
+    mv ../includes/RPEngine/importedClasses.h ../includes/RPEngine/importedClasses.h.old
+    cp includes/*.h ../includes/RPEngine/
+    mv ../includes/RPEngine/importedClasses.h.old ../includes/RPEngine/importedClasses.h
+else
+    cp includes/*.h ../includes/RPEngine/
+fi
 cp includes/RPAudio/*.h ../includes/RPAudio/
 cd ..
 rm -r -f RPEngine

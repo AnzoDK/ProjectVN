@@ -3,7 +3,7 @@ DEBUG_LEVEL := -g3
 PG:=
 CXX := g++
 #OBJECTS := ./includes/RPAudio/libRPAudio.a
-OBJECTS := main.o projectvn.o
+MAIN_OBJECTS := main.o projectvn.o
 LIB_OBJECTS := rpengine.o rppng.o ui.o
 INCLUDES := -I./includes
 LIB_FLAGS := -fPIC
@@ -12,10 +12,20 @@ LINK := -lrpengine -lrpaudio
 SRC := ./src
 OS := Linux
 
+
+
+
 #Default we load from this path
 SCRIPTS := ./Resources/scripts
 #Default
 RPPATH := ./includes/RPEngine
+
+
+LINK_SOURCES := $(wildcard $(SCRIPTS)/*.cpp)
+LINK_OBJECTS := $(patsubst $(SCRIPTS)/%.cpp,$(SCRIPTS)/%.o,$(LINK_SOURCES))
+OBJECTS := $(MAIN_OBJECTS)
+OBJECTS += $(LINK_OBJECTS)
+
 ifeq ($(OS), Windows)
 	CXX:= x86_64-w64-mingw32-g++
 	CXX_FLAGS += 
@@ -25,25 +35,31 @@ ifeq ($(OS), Linux)
 	LINK += -lSDL2 -lSDL2_image -lSDL2_ttf -lsndio
 endif
 
-dev-deps-windows: projectvn.o main.o
+
+$(SCRIPTS)/%.o: $(SCRIPTS)/%.cpp
+	$(CXX) $(PG) $(DEBUG_LEVEL) $(CXX_FLAGS) $(INCLUDES) -c -o $@ $<
+
+link:
+	./RPScriptLinker $(SCRIPTS) $(RPPATH)
+
+dev-deps-windows: $(OBJECTS)
 	./dependency-builder.sh --use-dev --Windows
 	./RPScriptLinker $(SCRIPTS) $(RPPATH)
 	$(CXX) $(PG) $(DEBUG_LEVEL) $(CXX_FLAGS) $(INCLUDES) $(SO_DIRS) $(OBJECTS) -o projectvn.exe $(LINK)
 	make clean
-no-dep-windows: projectvn.o main.o
+no-dep-windows: $(OBJECTS)
 	./RPScriptLinker $(SCRIPTS) $(RPPATH)
 	$(CXX) $(DEBUG_LEVEL) $(CXX_FLAGS) $(INCLUDES) $(SO_DIRS) $(OBJECTS) -o projectvn.exe $(LINK)
 	make clean
-release: projectvn.o main.o
+release: $(OBJECTS)
 	./dependency-builder.sh
 	$(CXX) $(PG) $(DEBUG_LEVEL) $(CXX_FLAGS) $(INCLUDES) $(SO_DIRS) $(OBJECTS) -o projectvn $(LINK)
 	make clean
-dev-deps: projectvn.o main.o
+dev-deps: link $(OBJECTS)
 	./dependency-builder.sh --use-dev
-	./RPScriptLinker $(SCRIPTS) $(RPPATH)
 	$(CXX) $(PG) $(DEBUG_LEVEL) $(CXX_FLAGS) $(INCLUDES) $(SO_DIRS) $(OBJECTS) -o projectvn $(LINK)
 	make clean
-no-dep: projectvn.o main.o
+no-dep: $(OBJECTS)
 	./RPScriptLinker $(SCRIPTS) $(RPPATH)
 	$(CXX) $(PG) $(DEBUG_LEVEL) $(CXX_FLAGS) $(INCLUDES) $(SO_DIRS) $(OBJECTS) -o projectvn $(LINK)
 	make clean
@@ -53,3 +69,4 @@ main.o:
 	$(CXX) -c $(PG) $(DEBUG_LEVEL) $(CXX_FLAGS) $(INCLUDES) -o main.o main.cpp
 clean:
 	-rm *.o
+	-rm $(SCRIPTS)/*.o
