@@ -49,7 +49,6 @@ class OptionsButton : public Button
         void Parse(std::vector<Base*>& vec) override;
     private:
         ButtonImage* buttonImg;
-        //static DerivedRegister<OptionsButton> reg;
 };
 class OptionsMenu : public MainMenu
 {
