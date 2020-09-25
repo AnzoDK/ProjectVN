@@ -2,8 +2,8 @@
 using namespace rp;
 void DeathSceneScript::Update(Scene& currScene, Base& currObj)
 {
+            std::cout << "Updating Script: " << GetName() << std::endl;
             DeathAnimation& ds = dynamic_cast<DeathAnimation&>(currObj);
-            std::cout << "Not done " << std::endl;
             if(ds.IsDone())
             {
                 ds.Reverse();

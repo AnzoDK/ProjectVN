@@ -14,6 +14,7 @@ class DeathSceneScript : public SceneScriptBase
     private:
     
 };
+
 }
 
 

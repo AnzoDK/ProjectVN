@@ -327,6 +327,7 @@ void DeathScene::Init()
     bg->SetName("Background01");
     DA->SetName("BGAnimation");
     DeathSceneScript* ds = new DeathSceneScript();
+    ds->SetEnabled(1);
     DA->AddScript(ds);
     AddObject(deathTXT);
     AddObject(DA);
