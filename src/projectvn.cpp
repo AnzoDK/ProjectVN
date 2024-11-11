@@ -1,5 +1,6 @@
 #include "../includes/projectvn.h"
 #include <SDL2/SDL_opengl.h>
+#include "../includes/RPEngine/RPExceptions.h"
 using namespace rp;
 RosenoernEngine* Game::Engine = new RosenoernEngine(1,10);
 //Game
@@ -34,7 +35,11 @@ Game::Game()
 
 void Game::init()
 {
-  Game::Engine->init();
+  try{Game::Engine->init();}
+  catch(GeneralSDLException& e)
+  {
+      std::cout << "Engine Init returned error: " << e.what() << std::endl;
+  }
   Game::Engine->CreateMainWindow("ProjectVN",0,1);
   MainMenu* mm = new MainMenu();
   OptionsMenu* om = new OptionsMenu();
